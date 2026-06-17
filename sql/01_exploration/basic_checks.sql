@@ -2,7 +2,12 @@
 -- 01. SANITY CHECKS
 -- =========================================
 
-SELECT COUNT(*) FROM baf_raw;
+-- class imbalance
+SELECT
+    COUNT(*) AS total_rows,
+    SUM(fraud_bool) AS fraud_rows,
+    AVG(fraud_bool) AS fraud_rate
+FROM baf_raw;
 
 
 -- =========================================
@@ -23,6 +28,7 @@ PRAGMA table_info('baf_raw');
 -- 04. MISSING VALUES
 -- =========================================
 
+-- null checks
 SELECT
     COUNT(*) AS total,
     COUNT(income) AS non_null_income
